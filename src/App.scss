@@ -1,0 +1,87 @@
+.App {
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas:
+    "header header"
+    "form   detail";
+  text-align: center;
+  height: 100%;
+
+  @media only screen and (max-width: 767px) {
+    grid-template-rows: 4fr 1fr 6fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "detail"
+      "header"
+      "form"
+  }
+
+  &-header {
+    grid-area: header;
+    background-color: #282c34;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+
+  &-form {
+    grid-area: form;
+    padding: 10px;
+    color: #666;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      min-height: 350px;
+      max-height: 500px;
+      justify-content: space-between;
+
+      .fieldset {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        align-items: baseline;
+
+        label {
+          display: block;
+          order: 1;
+          padding: 10px 0;
+        }
+        select {
+          display: block;
+          order: 2;
+          width: 100%;
+          height: 40px;
+          font-size: 0.9em;
+        }
+      }
+    }
+  }
+
+  &-detail {
+    grid-area: detail;
+    padding: 10px;
+    color: #666;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 100%;
+      max-width: 700px;
+    }
+  }
+
+  &-link {
+    color: #61dafb;
+  }
+
+}
