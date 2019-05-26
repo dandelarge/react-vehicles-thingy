@@ -6,7 +6,7 @@ export default function BrandDropdown({optionsList, value, onChange}) {
         fieldName: 'brand',
         fieldId: 'brand',
         label: 'Brand',
-        optionsList: [{label: 'pick a brand', value: ''}, ...optionsList],
+        optionsList: [{label: 'pick a brand', value: '', disabled: true}, ...optionsList],
         value,
         onChange
     };

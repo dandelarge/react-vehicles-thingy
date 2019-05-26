@@ -6,7 +6,7 @@ export default function TypeDropdown({optionsList, value, onChange}) {
         fieldName: 'type',
         fieldId: 'type',
         label: 'Vehicle Type',
-        optionsList: [{label: 'pick a type of vehicle', value: ''}, ...optionsList],
+        optionsList: [{label: 'pick a type of vehicle', value: '', disabled: true}, ...optionsList],
         value,
         onChange
     };

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default function Dropdown(props) {
 
     const dropdownOptions = props.optionsList.map(option => (
-        <option value={option.value} key={option.value} >{option.label}</option>
+        <option value={option.value} key={option.value} disabled={option.disabled} >{option.label}</option>
     ));
 
     return (

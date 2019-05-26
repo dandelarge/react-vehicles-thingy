@@ -6,7 +6,7 @@ export default function ColorDropdown({optionsList, value, onChange}) {
         fieldName: 'color',
         fieldId: 'color',
         label: 'Color',
-        optionsList: [{label: 'pick a color', value: ''}, ...optionsList],
+        optionsList: [{label: 'pick a color', value: '', disabled: true}, ...optionsList],
         value,
         onChange
     };

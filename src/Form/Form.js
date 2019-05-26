@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
-import trafficMeister from '../service';
-import {makeTypesList, makeBrandOptions} from '../helpers';
+import {makeTypesList, makeBrandOptions, trafficMeisterClient} from '../helpers';
 import TypeDropdown from './TypeDropdown';
 import BrandDropdown from './BrandDropdown';
 import ColorDropdown from './ColorDropdown';
@@ -13,7 +12,7 @@ export default function Form(props) {
     const [loading, setLoading] = useState(false);
 
     //Model
-    const [vehiclesList, setVehicleslist] = useState([]);
+    const [vehiclesList, setVehiclesList] = useState([]);
 
     //Select values
     const [selectedType, setSelectedType] = useState('');
@@ -27,17 +26,26 @@ export default function Form(props) {
 
     // Handling initial rendering
     useEffect(() => {
-        setLoading(true);
-        //TODO: Make this a promise if I have time
-        trafficMeister.fetchData((error, data) => {
-            if(error) {
-                console.log('trafficMeister API failed');
-                data = [];
+        let errorCount = 0;
+        (async function onMount(retries = 3) {
+            setLoading(true);
+            try {
+                const list = await trafficMeisterClient.fetchData();
+                setVehiclesList(list);
+                setTypesOptions(makeTypesList(list));
+                setLoading(false);
+            } catch(e) {
+                // If the API fails, we try again a few more times
+                if (errorCount < retries) {
+                    errorCount++;
+                    onMount(retries);
+                // if it doesn't reply after few tries, we stop the spinner
+                } else {
+                    setLoading(false);
+                    console.error(e);
+                }
             }
-            setVehicleslist(data);
-            setTypesOptions(makeTypesList(data));
-            setLoading(false);
-        });
+        })();
     }, []);
 
     useEffect(() => {
@@ -49,17 +57,23 @@ export default function Form(props) {
     function onTypeSelect(e)  {
         setSelectedType(e.target.value);
         setBrandOptions(makeBrandOptions(vehiclesList, e.target.value));
+        props.setData(e.target.value);
+        props.getImage('/img/car-icon.jpg');
+        props.setError(false);
     }
 
     function onBrandSelect(e) {
         const obj = vehiclesList.filter(vehicle => vehicle.brand === e.target.value)[0];
         setSelectedBrand(e.target.value);
         setColorOptions(obj.colors.map(color => ({label: color, value: color})));
+        props.setData(selectedType, e.target.value);
         props.getImage(obj.img);
+        props.setError(false);
     }
 
     function onColorSelect(e) {
         setSelectedColor(e.target.value);
+        props.setData(selectedType, selectedBrand, e.target.value);
     }
 
     return (

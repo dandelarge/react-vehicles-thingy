@@ -1,3 +1,5 @@
+import { fetchData } from './trafficMeisterClient';
+
 export function makeTypesList(list) {
     let types = {};
     const typesArr = list
@@ -16,4 +18,8 @@ export function makeBrandOptions(list, type) {
     return list
         .filter(vehicle => vehicle.type === type)
         .map(vehicle => ({label: vehicle.brand, value: vehicle.brand}));
+};
+
+export const trafficMeisterClient = {
+    fetchData
 };
