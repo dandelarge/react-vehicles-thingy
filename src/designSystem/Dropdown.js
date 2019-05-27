@@ -15,7 +15,8 @@ export default function Dropdown(props) {
                 className="App-dropdown"
                 disabled={props.disabled}
                 onChange={props.onChange}
-                value={props.value} >
+                value={props.value}
+                data-testid={`${props.fieldId}-select`}>
                 {dropdownOptions}
             </select>
             <label htmlFor="">{props.label}</label>

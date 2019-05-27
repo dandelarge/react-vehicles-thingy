@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form should actually render 1`] = `
+<div>
+  <form>
+    <h3>
+      This is the test!
+    </h3>
+    <div
+      class="fieldset"
+    >
+      <select
+        class="App-dropdown"
+        data-testid="type-select"
+        id="type"
+        name="type"
+      >
+        <option
+          disabled=""
+          value=""
+        >
+          pick a type of vehicle
+        </option>
+        <option
+          value="car"
+        >
+          car
+        </option>
+      </select>
+      <label
+        for=""
+      >
+        Vehicle Type
+      </label>
+    </div>
+    <div
+      class="fieldset"
+    >
+      <select
+        class="App-dropdown"
+        data-testid="brand-select"
+        id="brand"
+        name="brand"
+      >
+        <option
+          disabled=""
+          value=""
+        >
+          pick a brand
+        </option>
+      </select>
+      <label
+        for=""
+      >
+        Brand
+      </label>
+    </div>
+    <div
+      class="fieldset"
+    >
+      <select
+        class="App-dropdown"
+        data-testid="color-select"
+        id="color"
+        name="color"
+      >
+        <option
+          disabled=""
+          value=""
+        >
+          pick a color
+        </option>
+      </select>
+      <label
+        for=""
+      >
+        Color
+      </label>
+    </div>
+  </form>
+</div>
+`;
