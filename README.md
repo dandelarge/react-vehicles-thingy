@@ -1,5 +1,24 @@
 # Planes, trains and automobiles
 
+## How to Run the App
+
+This is a create-react-app application. Hence it can be built by runing
+```
+npm run build
+```
+The deployable folder is called `build`.
+
+Tests can be run using
+```
+npm test
+```
+To run tests away from interactive mode, you need to set the CI environment variable
+
+the app can be run locally with
+```
+npm start
+```
+
 ## The Traffic Meister application assignment
 
  - Create a form which behaves as follows
